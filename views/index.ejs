@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Authentication Explorer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>API Authentication Explorer</h1>
+      <p class="subtitle">Discover different authentication methods for securing APIs</p>
+      <p class="description">
+        This interactive tool demonstrates four common API authentication techniques: No Authentication, 
+        Basic Authentication, API Key, and Bearer Token. Click the buttons below to see each in action.
+      </p>
+    </header>
+
+    <div class="buttons-container">
+      <button type="button" id="noAuth" class="auth-button tooltip" onclick="loadEndpoint('/noAuth')">
+        <i class="fas fa-unlock"></i> No Auth
+        <span class="tooltip-text">Access public endpoints without any authentication</span>
+      </button>
+      <button type="button" id="basicAuth" class="auth-button tooltip" onclick="loadEndpoint('/basicAuth')">
+        <i class="fas fa-user-shield"></i> Basic Auth
+        <span class="tooltip-text">Uses username/password encoded in base64</span>
+      </button>
+      <button type="button" id="apiKey" class="auth-button tooltip" onclick="loadEndpoint('/apiKey')">
+        <i class="fas fa-key"></i> API Key
+        <span class="tooltip-text">Access using a special key in query parameters</span>
+      </button>
+      <button type="button" id="bearerToken" class="auth-button tooltip" onclick="loadEndpoint('/bearerToken')">
+        <i class="fas fa-crown"></i> Bearer Token
+        <span class="tooltip-text">Token-based authentication in headers</span>
+      </button>
+    </div>
+
+    <div class="loading">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div class="info-cards">
+      <div class="info-card">
+        <h3><i class="fas fa-unlock"></i> No Authentication</h3>
+        <p>
+          Public APIs with no authentication requirements. Anyone can access these endpoints without credentials.
+          Suitable for public data that requires no protection.
+        </p>
+      </div>
+      <div class="info-card">
+        <h3><i class="fas fa-user-shield"></i> Basic Authentication</h3>
+        <p>
+          Uses username and password credentials encoded in base64. Simple to implement but should be used 
+          with HTTPS to ensure security during transmission.
+        </p>
+      </div>
+      <div class="info-card">
+        <h3><i class="fas fa-key"></i> API Key</h3>
+        <p>
+          A unique generated value assigned to users. Typically sent in query parameters or headers. 
+          Simpler than OAuth but provides less security for highly sensitive operations.
+        </p>
+      </div>
+      <div class="info-card">
+        <h3><i class="fas fa-crown"></i> Bearer Token</h3>
+        <p>
+          A token-based authentication mechanism commonly used with OAuth 2.0 and JWT. 
+          Provides secure access to protected resources without exposing user credentials.
+        </p>
+      </div>
+    </div>
+
+    <div class="response-section">
+      <h2 class="response-title">API Response</h2>
+      <div class="response-area">
+        <pre><%=content%></pre>
+      </div>
+    </div>
+
+    <footer>
+      <p>Created with Express.js and EJS | API Authentication Demo Project</p>
+      <p>© <%= new Date().getFullYear() %> API Explorer | All rights reserved</p>
+    </footer>
+  </div>
+
+  <script src="/js/main.js"></script>
+</body>
+
+</html>
